@@ -1,14 +1,81 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
+#include "LoginLayer.h"
+#include "HallLayer.h"
+#include "YZExternal/MD5/Encryption.h"
+#include <SimpleAudioEngine.h>
+#include "Util/JzLog.h"
+#include "LoginLayer.h"
 
 USING_NS_CC;
+using namespace CocosDenshion;
 
-static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320);
-static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
-static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
-static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
+//只能处理目录:lpPath只能是路径
+//void LFind(char *lpPath,std::vector<std::string>& vecImage,std::vector<std::string>& vecName)
+//{
+//   char szFind[MAX_PATH];
+//   char szFile[MAX_PATH];
 
-AppDelegate::AppDelegate() {
+//    WIN32_FIND_DATAA FindFileData;
+
+//    strcpy(szFind,lpPath);
+//    strcat(szFind,"//*.*");
+
+//    HANDLE hFind=::FindFirstFileA(szFind,&FindFileData);
+ //   if(INVALID_HANDLE_VALUE == hFind)
+//		return;
+//    while(TRUE)
+//    {
+//        if(FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+//        {
+//            if(FindFileData.cFileName[0]!='.')
+//            {
+//                strcpy(szFile,lpPath);
+ //               strcat(szFile,"//");
+//                strcat(szFile,FindFileData.cFileName);
+//                LFind(szFile,vecImage,vecName);
+ //           }
+ //       }
+//        else
+//        {
+//			//std::string strTemp = FindFileData.cFileName;
+//			//if(strTemp.)
+//			char* pTemp = FindFileData.cFileName+strlen(FindFileData.cFileName)-3;
+//			if( strcmp(pTemp,"png")==0 || strcmp(pTemp,"jpg")==0 )
+//			{
+//				std::string strFileName = lpPath;
+//				strFileName += "/";
+//				strFileName += FindFileData.cFileName;
+//				vecImage.push_back(strFileName);
+//				vecName.push_back(FindFileData.cFileName);
+//			}
+//
+//        }
+//        if(!FindNextFileA(hFind,&FindFileData))
+//            break;
+//    }
+//    FindClose(hFind);
+//}
+
+
+AppDelegate::AppDelegate()
+{
+//	std::vector<std::string> vecFile;
+//	std::vector<std::string> vecName;
+//	LFind("fishKing/Input",vecFile,vecName);
+//	for(int i=0;i<vecFile.size();i++)
+//	{
+//		Image ima;
+//		std::string strFilePath;
+//		strFilePath = "fishKing/Output/";
+//		strFilePath += vecName[i];
+//
+//		Data data = FileUtils::getInstance()->getDataFromFile(vecFile[i]);
+//		data=decryptData(data);
+//		if (ima.initWithImageData(data.getBytes(),data.getSize()))
+//		{
+//			ima.saveToFile(strFilePath);
+//		}
+//	}
 
 }
 
@@ -27,55 +94,37 @@ void AppDelegate::initGLContextAttrs()
     GLView::setGLContextAttrs(glContextAttrs);
 }
 
-// If you want to use packages manager to install more packages, 
-// don't modify or remove this function
-static int register_all_packages()
-{
-    return 0; //flag for packages manager
-}
-
 bool AppDelegate::applicationDidFinishLaunching() {
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-        glview = GLViewImpl::createWithRect("XianLGame", Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
-#else
-        glview = GLViewImpl::create("XianLGame");
-#endif
+		glview = GLViewImpl::createWithRect("ZHMG", Rect(0, 0, 1136, 640));
+       // glview = GLViewImpl::createWithRect("ZHMG", Rect(0, 0, 1136*0.8f, 640*0.8f));
         director->setOpenGLView(glview);
     }
 
+    director->getOpenGLView()->setDesignResolutionSize(1136, 640, ResolutionPolicy::FIXED_WIDTH);
+
     // turn on display FPS
-    director->setDisplayStats(true);
+    director->setDisplayStats(false);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 
-    // Set the design resolution
-    glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
-    Size frameSize = glview->getFrameSize();
-    // if the frame's height is larger than the height of medium size.
-    if (frameSize.height > mediumResolutionSize.height)
-    {        
-        director->setContentScaleFactor(MIN(largeResolutionSize.height/designResolutionSize.height, largeResolutionSize.width/designResolutionSize.width));
-    }
-    // if the frame's height is larger than the height of small size.
-    else if (frameSize.height > smallResolutionSize.height)
-    {        
-        director->setContentScaleFactor(MIN(mediumResolutionSize.height/designResolutionSize.height, mediumResolutionSize.width/designResolutionSize.width));
-    }
-    // if the frame's height is smaller than the height of medium size.
-    else
-    {        
-        director->setContentScaleFactor(MIN(smallResolutionSize.height/designResolutionSize.height, smallResolutionSize.width/designResolutionSize.width));
-    }
-
-    register_all_packages();
+    JzLog::shareLog()->setWritePath((FileUtils::getInstance()->getWritablePath()+"/log.txt").c_str());
+    JzLog::shareLog()->setWriteToFile(true);
+    JzLog::shareLog()->setLogLevel(kLogLevelDebug);
+    JzLog::shareLog()->setWriteCache(1);
+    
+    FileUtils::getInstance()->addSearchPath("res");
 
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+	//auto scene = HallLayer::createScene();
+	auto scene = LoginLayer::createScene();
+    
+    
+	//auto scene = Welcome::createScene();
 
     // run
     director->runWithScene(scene);
@@ -88,7 +137,7 @@ void AppDelegate::applicationDidEnterBackground() {
     Director::getInstance()->stopAnimation();
 
     // if you use SimpleAudioEngine, it must be pause
-    // SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
+    SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 }
 
 // this function will be called when the app is active again
@@ -96,5 +145,5 @@ void AppDelegate::applicationWillEnterForeground() {
     Director::getInstance()->startAnimation();
 
     // if you use SimpleAudioEngine, it must resume here
-    // SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+    SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }
