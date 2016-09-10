@@ -149,6 +149,21 @@
 		6AF4BCFB1D83C1C3008C3765 /* WeChatManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4BCFA1D83C1C3008C3765 /* WeChatManager.mm */; };
 		6AF4BCFE1D83CAEB008C3765 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AF4BCFC1D83CAEB008C3765 /* libopencore-amrnb.a */; };
 		6AF4BCFF1D83CAEB008C3765 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AF4BCFD1D83CAEB008C3765 /* libopencore-amrwb.a */; };
+		6AF4BD211D840900008C3765 /* FishKingGameAdmin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4BD031D840900008C3765 /* FishKingGameAdmin.cpp */; };
+		6AF4BD221D840900008C3765 /* FishKingGameAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4BD051D840900008C3765 /* FishKingGameAudio.cpp */; };
+		6AF4BD231D840900008C3765 /* FishKingGameBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4BD071D840900008C3765 /* FishKingGameBullet.cpp */; };
+		6AF4BD241D840900008C3765 /* FishKingGameFishManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4BD091D840900008C3765 /* FishKingGameFishManager.cpp */; };
+		6AF4BD251D840900008C3765 /* FishKingGameFishObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4BD0B1D840900008C3765 /* FishKingGameFishObject.cpp */; };
+		6AF4BD261D840900008C3765 /* FishKingGameLoading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4BD0D1D840900008C3765 /* FishKingGameLoading.cpp */; };
+		6AF4BD271D840900008C3765 /* FishKingGameMathAide.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4BD0F1D840900008C3765 /* FishKingGameMathAide.cpp */; };
+		6AF4BD281D840900008C3765 /* FishKingGamePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4BD111D840900008C3765 /* FishKingGamePlayer.cpp */; };
+		6AF4BD291D840900008C3765 /* FishKingGameSceneFishTrace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4BD131D840900008C3765 /* FishKingGameSceneFishTrace.cpp */; };
+		6AF4BD2A1D840900008C3765 /* FishKingGameTableLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4BD151D840900008C3765 /* FishKingGameTableLogic.cpp */; };
+		6AF4BD2B1D840900008C3765 /* FishKingGameTableUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4BD171D840900008C3765 /* FishKingGameTableUI.cpp */; };
+		6AF4BD2C1D840900008C3765 /* FishKingGameToolbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4BD1A1D840900008C3765 /* FishKingGameToolbar.cpp */; };
+		6AF4BD2D1D840900008C3765 /* FishKingGameUserMessageBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4BD1C1D840900008C3765 /* FishKingGameUserMessageBox.cpp */; };
+		6AF4BD2E1D840900008C3765 /* FishKingGameVortexLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4BD1E1D840900008C3765 /* FishKingGameVortexLayer.cpp */; };
+		6AF4BFEA1D840924008C3765 /* fishKing in Resources */ = {isa = PBXBuildFile; fileRef = 6AF4BFE91D840924008C3765 /* fishKing */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -463,6 +478,37 @@
 		6AF4BCFA1D83C1C3008C3765 /* WeChatManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WeChatManager.mm; sourceTree = "<group>"; };
 		6AF4BCFC1D83CAEB008C3765 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libopencore-amrnb.a"; path = "ios/lib/libopencore-amrnb.a"; sourceTree = "<group>"; };
 		6AF4BCFD1D83CAEB008C3765 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libopencore-amrwb.a"; path = "ios/lib/libopencore-amrwb.a"; sourceTree = "<group>"; };
+		6AF4BD031D840900008C3765 /* FishKingGameAdmin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FishKingGameAdmin.cpp; sourceTree = "<group>"; };
+		6AF4BD041D840900008C3765 /* FishKingGameAdmin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingGameAdmin.h; sourceTree = "<group>"; };
+		6AF4BD051D840900008C3765 /* FishKingGameAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FishKingGameAudio.cpp; sourceTree = "<group>"; };
+		6AF4BD061D840900008C3765 /* FishKingGameAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingGameAudio.h; sourceTree = "<group>"; };
+		6AF4BD071D840900008C3765 /* FishKingGameBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FishKingGameBullet.cpp; sourceTree = "<group>"; };
+		6AF4BD081D840900008C3765 /* FishKingGameBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingGameBullet.h; sourceTree = "<group>"; };
+		6AF4BD091D840900008C3765 /* FishKingGameFishManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FishKingGameFishManager.cpp; sourceTree = "<group>"; };
+		6AF4BD0A1D840900008C3765 /* FishKingGameFishManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingGameFishManager.h; sourceTree = "<group>"; };
+		6AF4BD0B1D840900008C3765 /* FishKingGameFishObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FishKingGameFishObject.cpp; sourceTree = "<group>"; };
+		6AF4BD0C1D840900008C3765 /* FishKingGameFishObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingGameFishObject.h; sourceTree = "<group>"; };
+		6AF4BD0D1D840900008C3765 /* FishKingGameLoading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FishKingGameLoading.cpp; sourceTree = "<group>"; };
+		6AF4BD0E1D840900008C3765 /* FishKingGameLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingGameLoading.h; sourceTree = "<group>"; };
+		6AF4BD0F1D840900008C3765 /* FishKingGameMathAide.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FishKingGameMathAide.cpp; sourceTree = "<group>"; };
+		6AF4BD101D840900008C3765 /* FishKingGameMathAide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingGameMathAide.h; sourceTree = "<group>"; };
+		6AF4BD111D840900008C3765 /* FishKingGamePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FishKingGamePlayer.cpp; sourceTree = "<group>"; };
+		6AF4BD121D840900008C3765 /* FishKingGamePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingGamePlayer.h; sourceTree = "<group>"; };
+		6AF4BD131D840900008C3765 /* FishKingGameSceneFishTrace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FishKingGameSceneFishTrace.cpp; sourceTree = "<group>"; };
+		6AF4BD141D840900008C3765 /* FishKingGameSceneFishTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingGameSceneFishTrace.h; sourceTree = "<group>"; };
+		6AF4BD151D840900008C3765 /* FishKingGameTableLogic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FishKingGameTableLogic.cpp; sourceTree = "<group>"; };
+		6AF4BD161D840900008C3765 /* FishKingGameTableLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingGameTableLogic.h; sourceTree = "<group>"; };
+		6AF4BD171D840900008C3765 /* FishKingGameTableUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FishKingGameTableUI.cpp; sourceTree = "<group>"; };
+		6AF4BD181D840900008C3765 /* FishKingGameTableUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingGameTableUI.h; sourceTree = "<group>"; };
+		6AF4BD191D840900008C3765 /* FishKingGameTableUICallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingGameTableUICallback.h; sourceTree = "<group>"; };
+		6AF4BD1A1D840900008C3765 /* FishKingGameToolbar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FishKingGameToolbar.cpp; sourceTree = "<group>"; };
+		6AF4BD1B1D840900008C3765 /* FishKingGameToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingGameToolbar.h; sourceTree = "<group>"; };
+		6AF4BD1C1D840900008C3765 /* FishKingGameUserMessageBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FishKingGameUserMessageBox.cpp; sourceTree = "<group>"; };
+		6AF4BD1D1D840900008C3765 /* FishKingGameUserMessageBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingGameUserMessageBox.h; sourceTree = "<group>"; };
+		6AF4BD1E1D840900008C3765 /* FishKingGameVortexLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FishKingGameVortexLayer.cpp; sourceTree = "<group>"; };
+		6AF4BD1F1D840900008C3765 /* FishKingGameVortexLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingGameVortexLayer.h; sourceTree = "<group>"; };
+		6AF4BD201D840900008C3765 /* FishKingMessageHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishKingMessageHead.h; sourceTree = "<group>"; };
+		6AF4BFE91D840924008C3765 /* fishKing */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fishKing; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -598,6 +644,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6AF4BFE91D840924008C3765 /* fishKing */,
 				6AF4BCD21D83BD15008C3765 /* ChatLayer */,
 				6AF4BCD31D83BD15008C3765 /* erMaJiang */,
 				6AF4BCD41D83BD15008C3765 /* exitLayer */,
@@ -764,6 +811,7 @@
 		6AF4BBB51D83BCE3008C3765 /* GameTable */ = {
 			isa = PBXGroup;
 			children = (
+				6AF4BD021D840900008C3765 /* FishKing */,
 				6AF4BBB61D83BCE3008C3765 /* ErMahjong */,
 			);
 			path = GameTable;
@@ -1069,6 +1117,43 @@
 			path = YZSocket;
 			sourceTree = "<group>";
 		};
+		6AF4BD021D840900008C3765 /* FishKing */ = {
+			isa = PBXGroup;
+			children = (
+				6AF4BD031D840900008C3765 /* FishKingGameAdmin.cpp */,
+				6AF4BD041D840900008C3765 /* FishKingGameAdmin.h */,
+				6AF4BD051D840900008C3765 /* FishKingGameAudio.cpp */,
+				6AF4BD061D840900008C3765 /* FishKingGameAudio.h */,
+				6AF4BD071D840900008C3765 /* FishKingGameBullet.cpp */,
+				6AF4BD081D840900008C3765 /* FishKingGameBullet.h */,
+				6AF4BD091D840900008C3765 /* FishKingGameFishManager.cpp */,
+				6AF4BD0A1D840900008C3765 /* FishKingGameFishManager.h */,
+				6AF4BD0B1D840900008C3765 /* FishKingGameFishObject.cpp */,
+				6AF4BD0C1D840900008C3765 /* FishKingGameFishObject.h */,
+				6AF4BD0D1D840900008C3765 /* FishKingGameLoading.cpp */,
+				6AF4BD0E1D840900008C3765 /* FishKingGameLoading.h */,
+				6AF4BD0F1D840900008C3765 /* FishKingGameMathAide.cpp */,
+				6AF4BD101D840900008C3765 /* FishKingGameMathAide.h */,
+				6AF4BD111D840900008C3765 /* FishKingGamePlayer.cpp */,
+				6AF4BD121D840900008C3765 /* FishKingGamePlayer.h */,
+				6AF4BD131D840900008C3765 /* FishKingGameSceneFishTrace.cpp */,
+				6AF4BD141D840900008C3765 /* FishKingGameSceneFishTrace.h */,
+				6AF4BD151D840900008C3765 /* FishKingGameTableLogic.cpp */,
+				6AF4BD161D840900008C3765 /* FishKingGameTableLogic.h */,
+				6AF4BD171D840900008C3765 /* FishKingGameTableUI.cpp */,
+				6AF4BD181D840900008C3765 /* FishKingGameTableUI.h */,
+				6AF4BD191D840900008C3765 /* FishKingGameTableUICallback.h */,
+				6AF4BD1A1D840900008C3765 /* FishKingGameToolbar.cpp */,
+				6AF4BD1B1D840900008C3765 /* FishKingGameToolbar.h */,
+				6AF4BD1C1D840900008C3765 /* FishKingGameUserMessageBox.cpp */,
+				6AF4BD1D1D840900008C3765 /* FishKingGameUserMessageBox.h */,
+				6AF4BD1E1D840900008C3765 /* FishKingGameVortexLayer.cpp */,
+				6AF4BD1F1D840900008C3765 /* FishKingGameVortexLayer.h */,
+				6AF4BD201D840900008C3765 /* FishKingMessageHead.h */,
+			);
+			path = FishKing;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1171,6 +1256,7 @@
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				6AF4BCF21D83BD15008C3765 /* roleInfo in Resources */,
+				6AF4BFEA1D840924008C3765 /* fishKing in Resources */,
 				6AF4BCF31D83BD15008C3765 /* SetLayer in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
@@ -1222,16 +1308,19 @@
 				6AF4BCC11D83BCE3008C3765 /* MD5.cpp in Sources */,
 				6AF4BC871D83BCE3008C3765 /* GameMatchRoom.cpp in Sources */,
 				6AF4BCC81D83BCE3008C3765 /* YZPlatformBase.cpp in Sources */,
+				6AF4BD251D840900008C3765 /* FishKingGameFishObject.cpp in Sources */,
 				6AF4BCAF1D83BCE3008C3765 /* YZShake.cpp in Sources */,
 				6AF4BCCF1D83BCE3008C3765 /* YZSocketMessage.cpp in Sources */,
 				6AF4BC8B1D83BCE3008C3765 /* ErMahjongCard.cpp in Sources */,
 				6AF4BCBA1D83BCE3008C3765 /* YZLog.cpp in Sources */,
 				6AF4BCA21D83BCE3008C3765 /* TreasureLayer.cpp in Sources */,
+				6AF4BD281D840900008C3765 /* FishKingGamePlayer.cpp in Sources */,
 				6AF4BC901D83BCE3008C3765 /* ErMahjongGameTableLogic.cpp in Sources */,
 				6AF4BCD11D83BCE3008C3765 /* YZSocketThread.cpp in Sources */,
 				6AF4BC7D1D83BCE3008C3765 /* AppDelegate.cpp in Sources */,
 				6AF4BC851D83BCE3008C3765 /* GameMatch.cpp in Sources */,
 				6AF4BCBC1D83BCE3008C3765 /* YZThread.cpp in Sources */,
+				6AF4BD221D840900008C3765 /* FishKingGameAudio.cpp in Sources */,
 				6AF4BCCB1D83BCE3008C3765 /* YZRoomEventLayer.cpp in Sources */,
 				6AF4BCCE1D83BCE3008C3765 /* YZSocketLogic.cpp in Sources */,
 				6AF4BCC91D83BCE3008C3765 /* YZPlatformEventLayer.cpp in Sources */,
@@ -1245,6 +1334,7 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				6AF4BCB81D83BCE3008C3765 /* VoiceConverter.mm in Sources */,
 				6AF4BC8A1D83BCE3008C3765 /* GameRoom.cpp in Sources */,
+				6AF4BD2D1D840900008C3765 /* FishKingGameUserMessageBox.cpp in Sources */,
 				6AF4BCA51D83BCE3008C3765 /* YZLayerColor.cpp in Sources */,
 				6AF4BCFB1D83C1C3008C3765 /* WeChatManager.mm in Sources */,
 				6AF4BCB01D83BCE3008C3765 /* UploadFile.cpp in Sources */,
@@ -1258,6 +1348,7 @@
 				6AF4BC941D83BCE3008C3765 /* HelpLayer.cpp in Sources */,
 				6AF4BCC51D83BCE3008C3765 /* YZGameTableUsersData.cpp in Sources */,
 				6AF4BCBF1D83BCE3008C3765 /* YZUserInfoModule.cpp in Sources */,
+				6AF4BD271D840900008C3765 /* FishKingGameMathAide.cpp in Sources */,
 				6AF4BCB11D83BCE3008C3765 /* DateUtils.cpp in Sources */,
 				6AF4BCC71D83BCE3008C3765 /* YZGameCreator.cpp in Sources */,
 				6AF4BC981D83BCE3008C3765 /* PlatformConfig.cpp in Sources */,
@@ -1265,9 +1356,11 @@
 				6AF4BC9B1D83BCE3008C3765 /* SaveBoxLayer.cpp in Sources */,
 				6AF4BC8D1D83BCE3008C3765 /* ErMahjongCardOutList.cpp in Sources */,
 				6AF4BC911D83BCE3008C3765 /* ErMahjongGameTableUI.cpp in Sources */,
+				6AF4BD291D840900008C3765 /* FishKingGameSceneFishTrace.cpp in Sources */,
 				6AF4BCA71D83BCE3008C3765 /* YZScene.cpp in Sources */,
 				6AF4BC9A1D83BCE3008C3765 /* RecordLayer.cpp in Sources */,
 				6AF4BCC31D83BCE3008C3765 /* JsonReader.cpp in Sources */,
+				6AF4BD261D840900008C3765 /* FishKingGameLoading.cpp in Sources */,
 				6AF4BC971D83BCE3008C3765 /* PersonalLayer.cpp in Sources */,
 				6AF4BC7F1D83BCE3008C3765 /* CommonLayer.cpp in Sources */,
 				6AF4BC9F1D83BCE3008C3765 /* SocketErrorLayer.cpp in Sources */,
@@ -1275,8 +1368,12 @@
 				6AF4BCB21D83BCE3008C3765 /* JzLog.cpp in Sources */,
 				6AF4BC9E1D83BCE3008C3765 /* ShareLayer.cpp in Sources */,
 				6AF4BCD01D83BCE3008C3765 /* YZSocketProtocolData.cpp in Sources */,
+				6AF4BD231D840900008C3765 /* FishKingGameBullet.cpp in Sources */,
+				6AF4BD241D840900008C3765 /* FishKingGameFishManager.cpp in Sources */,
 				6AF4BCA01D83BCE3008C3765 /* YZAudioEngine.cpp in Sources */,
+				6AF4BD2E1D840900008C3765 /* FishKingGameVortexLayer.cpp in Sources */,
 				6AF4BCAE1D83BCE3008C3765 /* YZDialogBase.cpp in Sources */,
+				6AF4BD2C1D840900008C3765 /* FishKingGameToolbar.cpp in Sources */,
 				6AF4BCAC1D83BCE3008C3765 /* Tools.cpp in Sources */,
 				6AF4BCB91D83BCE3008C3765 /* YZConverCode.cpp in Sources */,
 				6AF4BCC01D83BCE3008C3765 /* Encryption.cpp in Sources */,
@@ -1286,9 +1383,12 @@
 				6AF4BC921D83BCE3008C3765 /* GlobalUnits.cpp in Sources */,
 				6AF4BCAD1D83BCE3008C3765 /* UserHead.cpp in Sources */,
 				6AF4BCBB1D83BCE3008C3765 /* YZMemoryPool.cpp in Sources */,
+				6AF4BD211D840900008C3765 /* FishKingGameAdmin.cpp in Sources */,
 				6AF4BCA81D83BCE3008C3765 /* YZSprite.cpp in Sources */,
 				6AF4BCA61D83BCE3008C3765 /* YZNode.cpp in Sources */,
+				6AF4BD2A1D840900008C3765 /* FishKingGameTableLogic.cpp in Sources */,
 				6AF4BCC41D83BCE3008C3765 /* YZGameLogicBase.cpp in Sources */,
+				6AF4BD2B1D840900008C3765 /* FishKingGameTableUI.cpp in Sources */,
 				6AF4BC801D83BCE3008C3765 /* ExitLayer.cpp in Sources */,
 				6AF4BCCA1D83BCE3008C3765 /* YZPlatformLogic.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,

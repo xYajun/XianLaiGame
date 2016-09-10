@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/YZPlatform/YZPlatformLogic.cpp"
+            timestampString = "495191411.02618"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "447"
+            endingLineNumber = "447"
+            landmarkName = "YZPlatformLogic::onRoomListMessage(NetMessageHead* messageHead, void* object, INT objectSize)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/GameTable/ErMahjong/ErMahjongDefine.h"
+            timestampString = "495192439.437662"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ErMahjong::MJOutCard::MJOutCard(ErMahjong::MJOutCard const&amp;)"
+                  moduleName = "XianLGame-mobile"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xialiguo/GitHub/XianLaiGame/XianLGame/Classes/GameTable/ErMahjong/ErMahjongDefine.h"
+                  timestampString = "495198096.341526"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ErMahjong::MJOutCard::~MJOutCard()"
+                  moduleName = "XianLGame-mobile"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xialiguo/GitHub/XianLaiGame/XianLGame/Classes/GameTable/ErMahjong/ErMahjongDefine.h"
+                  timestampString = "495198096.341793"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ErMahjong::MJOutCard::~MJOutCard()"
+                  moduleName = "XianLGame-mobile"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xialiguo/GitHub/XianLaiGame/XianLGame/Classes/GameTable/ErMahjong/ErMahjongDefine.h"
+                  timestampString = "495198096.342043"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ErMahjong::MJOutCard::MJOutCard(ErMahjong::MJOutCard&amp;&amp;)"
+                  moduleName = "XianLGame-mobile"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xialiguo/GitHub/XianLaiGame/XianLGame/Classes/GameTable/ErMahjong/ErMahjongDefine.h"
+                  timestampString = "495198096.342318"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ErMahjong::MJOutCard::MJOutCard(ErMahjong::MJOutCard&amp;&amp;)"
+                  moduleName = "XianLGame-mobile"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xialiguo/GitHub/XianLaiGame/XianLGame/Classes/GameTable/ErMahjong/ErMahjongDefine.h"
+                  timestampString = "495198096.342558"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ErMahjong::MJOutCard::MJOutCard()"
+                  moduleName = "XianLGame-mobile"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xialiguo/GitHub/XianLaiGame/XianLGame/Classes/GameTable/ErMahjong/ErMahjongDefine.h"
+                  timestampString = "495198096.342825"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ErMahjong::MJOutCard::MJOutCard()"
+                  moduleName = "XianLGame-mobile"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xialiguo/GitHub/XianLaiGame/XianLGame/Classes/GameTable/ErMahjong/ErMahjongDefine.h"
+                  timestampString = "495198096.343073"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/YZData/YZGamesInfoModule.cpp"
+            timestampString = "495193593.24458"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "YZGamesInfoModule::findGameName(INT gameID)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

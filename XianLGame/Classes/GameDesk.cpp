@@ -52,10 +52,10 @@ static const char* FIVE_DESK_ITEM_PATH	= "platform/DestItemUi2.json";
 static const char * OPEN_ROOM_HALL_BG = "HallLayer/HallLayer_1.json";
 static const char * OPEN_ROOM_HALL_TOP = "HallLayer/Hall_Top.json";
 
-static const char * CREATE_ROOM_LAYER = "platform/openRoom/RoomLayer/RoomLayer_1.json";     //鍒涘缓鎴块棿
+static const char * CREATE_ROOM_LAYER = "platform/openRoom/RoomLayer/RoomLayer_1/RoomLayer_1.json";     //鍒涘缓鎴块棿
 static const char * ENTER_IVCODE_LAYER = "platform/openRoom/RoomLayer/RoomLayer_3.json";     //閭�鐮佺晫闈�
 static const char * GET_ROOM_CARD_LAYER = "platform/openRoom/RoomLayer/RoomLayer_4.json";     //鍏戞崲鎴垮崱
-static const char * ENTER_GAME_LAYER = "platform/openRoom/RoomLayer/RoomLayer_5.json";       //鍔犲叆鎴块棿
+static const char * ENTER_GAME_LAYER = "platform/openRoom/RoomLayer/RoomLayer_5/RoomLayer_5.json";       //鍔犲叆鎴块棿
 
 static const char * OPEN_CREATE_ROOM_IAMGE = "HallLayer/res/btn_craeteRoom.png";
 static const char * RECOVERY_CREATE_ROOM_IMAGE = "HallLayer/res/btn_recoveryRoom.png";
@@ -224,50 +224,50 @@ void GameDesk::initOpenRoomDesk(){
     auto hallBG =(ImageView*)(Helper::seekWidgetByName(_uiRoomLayer,"hall_bg"));
     hallBG->setScale(Win_w/hallBG->getContentSize().width,Win_h/hallBG->getContentSize().height);
     
-    auto _uiRoomLayerTop = cocostudio::GUIReader::getInstance()->widgetFromJsonFile(OPEN_ROOM_HALL_TOP);
-    _uiRoomLayerTop->setAnchorPoint(Vec2(0.5f, 0.5f));
-    _uiRoomLayerTop->setPosition(Vec2(Win_w / 2, Win_h - _uiRoomLayerTop->getContentSize().height/2));
-    addChild(_uiRoomLayerTop, 2);
-    
-    auto btnRecord = (Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_record"));
-    btnRecord->setTag(TAG_BTN_RECORD);
-    btnRecord->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
+//    auto _uiRoomLayerTop = cocostudio::GUIReader::getInstance()->widgetFromJsonFile(OPEN_ROOM_HALL_TOP);
+//    _uiRoomLayerTop->setAnchorPoint(Vec2(0.5f, 0.5f));
+//    _uiRoomLayerTop->setPosition(Vec2(Win_w / 2, Win_h - _uiRoomLayerTop->getContentSize().height/2));
+//    addChild(_uiRoomLayerTop, 2);
+//    
+//    auto btnRecord = (Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_record"));
+//    btnRecord->setTag(TAG_BTN_RECORD);
+//    btnRecord->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
     
     // 创建房间按钮
-    createRoomBtn = (Button*)(Helper::seekWidgetByName(_uiRoomLayer,"btn_createRoom"));
+    createRoomBtn = (Button*)(Helper::seekWidgetByName(_uiRoomLayer,"btn_create"));
     createRoomBtn->setTag(TAG_BTN_OPEN_CREATEROOM);
     createRoomBtn->setVisible(false);
     createRoomBtn->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
     
-    auto enterGameBtn = (Button*)(Helper::seekWidgetByName(_uiRoomLayer,"btn_enterRoom"));
+    auto enterGameBtn = (Button*)(Helper::seekWidgetByName(_uiRoomLayer,"btn_join"));
     enterGameBtn->setTag(TAG_BTN_ENTER_ROOM);
     enterGameBtn->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
     
-    std::string headUrl = RoomLogic()->loginResult.pUserInfoStruct.szHeadUrl;
-    
-    JzDebug("加入房间 自己的头像链接为 : %s " , headUrl.c_str());
-    
-    _headImg = (ImageView*)(Helper::seekWidgetByName(_uiRoomLayerTop,"head_img"));
-    _headImg->setVisible(false);
-    //auto httpSp = HttpSprite::create(headUrl, "pdk/game/head_defult.png");
-    auto httpSp = HttpSprite::create(headUrl, RoomLogic()->loginResult.pUserInfoStruct.bBoy ? "erMaJiang/DisplayPicture/man.png" : "erMaJiang/DisplayPicture/woman.png");
-    httpSp->setImgSize(_headImg->getContentSize()/1.5f);
-    httpSp->setPosition(_headImg->getPosition());
-    httpSp->onClickSpriteCallBack(CC_CALLBACK_0(GameDesk::clickHeadImage, this));
-    _uiRoomLayerTop->addChild(httpSp,10);
+//    std::string headUrl = RoomLogic()->loginResult.pUserInfoStruct.szHeadUrl;
+//    
+//    JzDebug("加入房间 自己的头像链接为 : %s " , headUrl.c_str());
+//    
+//    _headImg = (ImageView*)(Helper::seekWidgetByName(_uiRoomLayerTop,"head_img"));
+//    _headImg->setVisible(false);
+//    //auto httpSp = HttpSprite::create(headUrl, "pdk/game/head_defult.png");
+//    auto httpSp = HttpSprite::create(headUrl, RoomLogic()->loginResult.pUserInfoStruct.bBoy ? "erMaJiang/DisplayPicture/man.png" : "erMaJiang/DisplayPicture/woman.png");
+//    httpSp->setImgSize(_headImg->getContentSize()/1.5f);
+//    httpSp->setPosition(_headImg->getPosition());
+//    httpSp->onClickSpriteCallBack(CC_CALLBACK_0(GameDesk::clickHeadImage, this));
+//    _uiRoomLayerTop->addChild(httpSp,10);
   
     
-    char str[60]={0};
-    auto label_nick = (Text*)(Helper::seekWidgetByName(_uiRoomLayerTop,"label_nick"));
-    label_nick->setString(GBKToUtf8(PlatformLogic()->loginResult.nickName));
-    
-    JzDebug("nickname : %s " ,GBKToUtf8(PlatformLogic()->loginResult.nickName));
-    JzDebug("dwUserID : %d " ,PlatformLogic()->loginResult.dwUserID);
-
-    SaveIntegerToXML(SAVE_USERID, PlatformLogic()->loginResult.dwUserID);
-
-    label_roomCount = (Text*)(Helper::seekWidgetByName(_uiRoomLayerTop,"label_gold"));
-    
+//    char str[60]={0};
+//    auto label_nick = (Text*)(Helper::seekWidgetByName(_uiRoomLayerTop,"label_nick"));
+//    label_nick->setString(GBKToUtf8(PlatformLogic()->loginResult.nickName));
+//    
+//    JzDebug("nickname : %s " ,GBKToUtf8(PlatformLogic()->loginResult.nickName));
+//    JzDebug("dwUserID : %d " ,PlatformLogic()->loginResult.dwUserID);
+//
+//    SaveIntegerToXML(SAVE_USERID, PlatformLogic()->loginResult.dwUserID);
+//
+//    label_roomCount = (Text*)(Helper::seekWidgetByName(_uiRoomLayerTop,"label_gold"));
+//    
     //创建房间
     _uiCreateRoomLayer = cocostudio::GUIReader::getInstance()->widgetFromJsonFile(CREATE_ROOM_LAYER);
     _uiCreateRoomLayer->setAnchorPoint(Vec2(0.5f, 0.5f));
@@ -275,44 +275,44 @@ void GameDesk::initOpenRoomDesk(){
     _uiCreateRoomLayer->setVisible(false);
     addChild(_uiCreateRoomLayer , 4);
     
-    auto doCreateRoomBtn = (Button*)(Helper::seekWidgetByName(_uiCreateRoomLayer,"btn_create"));
+    auto doCreateRoomBtn = (Button*)(Helper::seekWidgetByName(_uiCreateRoomLayer,"btn_ok"));
     doCreateRoomBtn->setTag(TAG_BTN_CREATE_ROOM);
     doCreateRoomBtn->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
     
-    auto exitCreateRoomBtn = (Button*)(Helper::seekWidgetByName(_uiCreateRoomLayer,"btn_exit"));
+    auto exitCreateRoomBtn = (Button*)(Helper::seekWidgetByName(_uiCreateRoomLayer,"Button_20"));
     exitCreateRoomBtn->setTag(TAG_BTN_EXIT_CREATE_ROOM);
     exitCreateRoomBtn->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
     
     
-    char strRoomCountName[64] = {0};
-    for (int i = 0; i < 2; i ++) {
-        sprintf(strRoomCountName,"inning_cb%d",i + 1);
-        auto checkBox = (ui::CheckBox*)(Helper::seekWidgetByName(_uiCreateRoomLayer,strRoomCountName));
-        checkBox->setTag(TAG_CR_CB_1 + i);
-        if (i == 0) {
-            checkBox->setSelected(true);
-        }else{
-            checkBox->setSelected(false);
-        }
-        checkBox->addEventListenerCheckBox(this, checkboxselectedeventselector(GameDesk::selectedRoomCountStateEvent));
-        roomCountCBoxVec.push_back(checkBox);
-    }
-    
-    
-    char strRoomZMName[64] = {0};
-    for (int i = 0; i < 3; i ++) {
-        sprintf(strRoomZMName,"zm_cb%d",i + 1);
-        auto checkBox = (ui::CheckBox*)(Helper::seekWidgetByName(_uiCreateRoomLayer,strRoomZMName));
-        checkBox->setTag(TAG_ZM_CB_1 + i);
-        if (i == 0) {
-            checkBox->setSelected(true);
-        }else{
-            checkBox->setSelected(false);
-        }
-        checkBox->addEventListenerCheckBox(this, checkboxselectedeventselector(GameDesk::selectedRoomZMStateEvent));
-        
-        roomZMCBoxVec.push_back(checkBox);
-    }
+//    char strRoomCountName[64] = {0};
+//    for (int i = 0; i < 2; i ++) {
+//        sprintf(strRoomCountName,"inning_cb%d",i + 1);
+//        auto checkBox = (ui::CheckBox*)(Helper::seekWidgetByName(_uiCreateRoomLayer,strRoomCountName));
+//        checkBox->setTag(TAG_CR_CB_1 + i);
+//        if (i == 0) {
+//            checkBox->setSelected(true);
+//        }else{
+//            checkBox->setSelected(false);
+//        }
+//        checkBox->addEventListenerCheckBox(this, checkboxselectedeventselector(GameDesk::selectedRoomCountStateEvent));
+//        roomCountCBoxVec.push_back(checkBox);
+//    }
+//    
+//    
+//    char strRoomZMName[64] = {0};
+//    for (int i = 0; i < 3; i ++) {
+//        sprintf(strRoomZMName,"zm_cb%d",i + 1);
+//        auto checkBox = (ui::CheckBox*)(Helper::seekWidgetByName(_uiCreateRoomLayer,strRoomZMName));
+//        checkBox->setTag(TAG_ZM_CB_1 + i);
+//        if (i == 0) {
+//            checkBox->setSelected(true);
+//        }else{
+//            checkBox->setSelected(false);
+//        }
+//        checkBox->addEventListenerCheckBox(this, checkboxselectedeventselector(GameDesk::selectedRoomZMStateEvent));
+//        
+//        roomZMCBoxVec.push_back(checkBox);
+//    }
     
     
     
@@ -359,22 +359,22 @@ void GameDesk::initOpenRoomDesk(){
     closeEnterRoomLayer->setTag(TAG_BTN_CLOSE_ENTER_ROOM);
     closeEnterRoomLayer->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
     
-    auto btnExit=(ui::Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_kefu"));
-    btnExit->setTag(TAG_BTN_KEFU);
-    btnExit->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
-    
-    auto btnSet=(ui::Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_wanFa"));
-    btnSet->setTag(TAG_BTN_WANFA);
-    btnSet->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
-    
-    auto btnShop=(ui::Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_addGold"));
-    btnShop->setTag(TAG_BTN_SHOP);
-    btnShop->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
+//    auto btnExit=(ui::Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_kefu"));
+//    btnExit->setTag(TAG_BTN_KEFU);
+//    btnExit->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
+//    
+//    auto btnSet=(ui::Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_wanFa"));
+//    btnSet->setTag(TAG_BTN_WANFA);
+//    btnSet->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
+//    
+//    auto btnShop=(ui::Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_addGold"));
+//    btnShop->setTag(TAG_BTN_SHOP);
+//    btnShop->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
     
     char inputName[64] = {0};
     for(int i = 0; i <= 11; i++)
     {
-        sprintf(inputName, "btn_num%d", i);
+        sprintf(inputName, "num%d_bg", i);
         auto numInput = (Button*)(Helper::seekWidgetByName(_uiEnterGameLayer,inputName));
         numInput->setTag(TAG_BTN_INPUT_NUM_0 + i);
         numInput->addTouchEventListener(CC_CALLBACK_2(GameDesk::inputRoomIdCallBack, this));
@@ -699,6 +699,7 @@ void GameDesk::updateRoomPeople(INT count)
 
 
 void GameDesk::onQueryPropRoomCardInfo(MSG_PROP_S_QUERY_ROOMCARD * data , BYTE bHandleCode) {
+   // return;
     if (bHandleCode == 0) {
         userPorpInfos.at(data->attribValue).count = data->nHoldCount;
     }else if (bHandleCode == 1){
@@ -706,12 +707,12 @@ void GameDesk::onQueryPropRoomCardInfo(MSG_PROP_S_QUERY_ROOMCARD * data , BYTE b
         queryBackRoomInfoFromService();
         
         map<int,PropInfo>::iterator it;
-        for(it=userPorpInfos.begin();it!=userPorpInfos.end();++it){
-            JzDebug("查询道具信息    道具ID ： %d   道具名 : %s  ,  数量 ：%d " , it->first , it->second.szPropName.c_str() , it->second.count);
-            char str[128];
-            sprintf(str, GBKToUtf8("房卡 : %d"), it->second.count);
-            label_roomCount->setString(str);
-        }
+//        for(it=userPorpInfos.begin();it!=userPorpInfos.end();++it){
+//            JzDebug("查询道具信息    道具ID ： %d   道具名 : %s  ,  数量 ：%d " , it->first , it->second.szPropName.c_str() , it->second.count);
+//            char str[128];
+//            sprintf(str, GBKToUtf8("房卡 : %d"), it->second.count);
+//            label_roomCount->setString(str);
+//        }
     }
 }
 
@@ -952,9 +953,9 @@ void GameDesk::onBuyRoomCardMessage(MSG_PROP_S_BUY_ROOMCARD * data){
     
     userPorpInfos.at(data->attribValue).count = data->nHoldCount;
     
-    char str[128];
-    sprintf(str, GBKToUtf8("房卡 : %d"), data->nHoldCount);
-    label_roomCount->setString(str);
+    //char str[128];
+    //sprintf(str, GBKToUtf8("房卡 : %d"), data->nHoldCount);
+    //label_roomCount->setString(str);
     JzDebug("购买后 %d 道具数量为 : %d  花费金钱 : %lld " , data->attribValue ,userPorpInfos.at(data->attribValue).count ,data->dwCost );
 }
 

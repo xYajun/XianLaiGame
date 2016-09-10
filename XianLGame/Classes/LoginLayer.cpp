@@ -153,8 +153,8 @@ void  LoginLayer::creatInitLoginLayer()
     times = 1.5f;
     
     
-    
-    
+    ImageView* ts = (ImageView*)(Helper::seekWidgetByName(_uiInitLoginLayer,"Image_6"));
+    ts->setVisible(false);
     
     
     
