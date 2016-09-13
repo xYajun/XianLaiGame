@@ -207,6 +207,10 @@ public:
     virtual void onBuyRoomCardMessage(MSG_PROP_S_BUY_ROOMCARD * data) override;
 
     virtual void onQueryGameRecordMessage() ;
+    
+    void bgSliderEvent(cocos2d::Ref *pSender, SliderEventType type);
+    void soundSliderEvent(cocos2d::Ref *pSender, SliderEventType type);
+    void btnClickEventCallback(cocos2d::Ref* pSender, ui::Widget::TouchEventType touchtype);
 private:
     void initOpenRoomDesk();        //初始化界面
     void enterRoomDesk();           //加入房间
@@ -271,6 +275,14 @@ private:
     Layer* waitLayer;
     
     std::map<int , PropInfo> userPorpInfos;  //Key ： 房间次数  Value ： 房间信息
+    
+    Widget* _settingWidget;
+    Button* _btnMusic;
+    Button* _btnSound;
+    ui::Slider * bgSlider;
+    ui::Slider * soundSlider;
+    
+    
 };
 
 #endif // GameDesk_h__

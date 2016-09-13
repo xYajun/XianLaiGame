@@ -85,6 +85,9 @@ bool GamePromptLayer::init()
     
     addChild(_layout, 2, 3);
     
+     auto tit = (ImageView*)Helper::seekWidgetByName(_layout, "Image_8");
+    tit->setPositionY(tit->getPositionY()+20);
+    
     _Label_Prompt = (Text*)Helper::seekWidgetByName(_layout, "Label_Prompt");
     _Label_Prompt->setString("");
     

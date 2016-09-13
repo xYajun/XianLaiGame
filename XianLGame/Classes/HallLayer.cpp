@@ -21,9 +21,6 @@
 #include "GameTable/ErMahjong/ErMahjongGameTableUI.h"
 #include "GameTable/ErMahjong/ErMahjongMessageHead.h"
 
-#include "GameTable/FishKing/FishKingGameTableUI.h"
-#include "GameTable/FishKing/FishKingMessageHead.h"
-
 using namespace cocostudio;
 using namespace cocos2d::ui;
 USING_NS_CC;
@@ -52,8 +49,7 @@ static const int maxGameNum = 1;
 
 
 ////////////////////////////////////////////////////////
-static const char* IMG_GAME_HZMJ				= "HallLayer/hzmj.png";
-static const char* IMG_GAME_BYDR				= "HallLayer/bydr.png";
+static const char* IMG_GAME_DDZ				= "HallLayer/game_ddz.png";
 #define Name_Local_Head_Pic			"PersonalHead/local_head_"
 #define Name_Defaul_Pic				"HallLayer/res/head_default.png"
 
@@ -73,185 +69,6 @@ bool HallLayer::init()
     {
         return false;
     }
-    
-    
-    
-    canSign = false;
-    signDays = 0;
-    _uiMessageBox = NULL;
-    // hall main layer
-    _uiHallLayer = cocostudio::GUIReader::getInstance()->widgetFromJsonFile("HallLayer/HallLayer.json");
-    _uiHallLayer->setTag(LAYER_HALL);
-    _uiHallLayer->setAnchorPoint(Vec2(0.5f, 0.5f));
-    _uiHallLayer->setPosition(Vec2(Win_w / 2, Win_h / 2));
-    addChild(_uiHallLayer);
-    
-    // hall top layer
-    _uiHallTop = cocostudio::GUIReader::getInstance()->widgetFromJsonFile("HallLayer/Hall_Top.json");
-    Size uiSizeTop = _uiHallTop->getContentSize();
-    _uiHallTop->setAnchorPoint(Vec2(0.5f, 0.5f));
-    _uiHallTop->setPosition(Vec2(Win_w / 2 , Win_h - uiSizeTop.height/2));
-    addChild(_uiHallTop);
-    
-    //auto top_bg = (ImageView*)(Helper::seekWidgetByName(_uiHallTop,"top_bg"));
-    //±ÍÃ‚Ãÿ–ß
-    //auto animation = Animation::create();
-    //for( int i = 1;i<=11;i++)
-    //{
-    //	char szName[100] = {0};
-    //	sprintf(szName, "LoginLayer/effect/%d.png", i);
-    //	animation->addSpriteFrameWithFile(szName);
-    //}
-    //animation->setDelayPerUnit(1.0f /11.0f);
-    //animation->setRestoreOriginalFrame(false);
-    
-    //auto alphaSprite = Sprite::create("alpha_0.png");
-    //alphaSprite->setPosition(Vec2(562,45));
-    //auto action = Animate::create(animation);
-    //auto seq = Sequence::create(action, nullptr);
-    //alphaSprite->runAction(RepeatForever::create(seq));
-    //top_bg->addChild(alphaSprite);
-    
-    // hall down layer
-//    _uiHallDown = cocostudio::GUIReader::getInstance()->widgetFromJsonFile("HallLayer/Hall_Down.json");
-//    Size uiSizeDown = _uiHallDown->getContentSize();
-//    _uiHallDown->setAnchorPoint(Vec2(0.5f, 0.5f));
-//    _uiHallDown->setPosition(Vec2(Win_w / 2 , uiSizeDown.height/2));
-//    addChild(_uiHallDown);
-//    
-//    if(PlatformLogic()->loginResult.bClose){
-//        _uiHallDown->setVisible(false);
-//    }
-    
-    //----------------- TOP LAYER ------------------
-    // head icon image
-    personal = (Button*)(Helper::seekWidgetByName(_uiHallTop,"head_img"));
-    //personal->addTouchEventListener(CC_CALLBACK_2(HallLayer::onImageClicked,this));
-    //personal->setTag(IMAGE_HEAD);
-//
-//    setHallHeadPic();
-    
-    MSG_GP_R_LogonResult loginResult = PlatformLogic()->loginResult;
-    // 	if (loginResult.iFirstLogin == 0)
-    // 	{
-    // 		showLoadAward();
-    // 	}
-    
-    // nickname
-    Text * _nickName = dynamic_cast<Text *>(Helper::seekWidgetByName(_uiHallTop,"label_nick"));
-    _nickName->setString(GBKToUtf8(PlatformLogic()->loginResult.nickName));
-    
-    // gold number
-    user_goldInfo = (Text*)(Helper::seekWidgetByName(_uiHallTop,"label_gold"));
-    char goldStr[32];
-    sprintf(goldStr, "%lld", PlatformLogic()->loginResult.i64Money);
-    user_goldInfo->setString(goldStr);
-    //user_goldInfo->setString(getMoneyByWan(PlatformLogic()->loginResult.i64Money));
-    
-    // add gold button
-    Button* b_goldAdd = (Button*)(Helper::seekWidgetByName(_uiHallTop,"btn_addGold"));
-    b_goldAdd->addTouchEventListener(CC_CALLBACK_2(HallLayer::onBtnClicked, this));
-    b_goldAdd->setTag(BTN_GLODADD);
-    
-    
-    
-    
-    
-    
-    
-    
-    // free button
-    Button* b_share = (Button*)(Helper::seekWidgetByName(_uiHallTop,"btn_msg"));
-    b_share->addTouchEventListener(CC_CALLBACK_2(HallLayer::onBtnClicked, this));
-    b_share->setTag(BTN_SHARE);
-    
-    // treasure button
-    Button* b_record = (Button*)(Helper::seekWidgetByName(_uiHallTop,"btn_record"));
-    b_record->addTouchEventListener(CC_CALLBACK_2(HallLayer::onBtnClicked, this));
-    b_record->setTag(BTN_TREASURE);
-    
-    // set button
-    Button* b_set = (Button*)(Helper::seekWidgetByName(_uiHallTop,"btn_set"));
-    b_set->addTouchEventListener(CC_CALLBACK_2(HallLayer::onBtnClicked, this));
-    b_set->setTag(BTN_SET);
-    
-    // trumpet button
-    Button* b_exit = (Button*)(Helper::seekWidgetByName(_uiHallTop,"btn_back"));
-    b_exit->addTouchEventListener(CC_CALLBACK_2(HallLayer::onBtnClicked, this));
-    b_exit->setTag(BTN_TRUMPET);
-    
-    // --TODO π„≤•–≈œ¢¿∏
-    // up label ¥””““∆∂ØµΩ◊Û  ‘›Õ£ “∆≥ˆ ÷ÿ÷√Œª÷√∂Ø◊˜
-    label_up_msg = (Text*)(Helper::seekWidgetByName(_uiHallTop,"label_msg"));
-    label_up_msg->setString(GBKToUtf8("欢迎来到有约棋牌！"));
-    setMsgRollAction();
-    
-    
-//    auto img_msg_box = (ImageView*)(Helper::seekWidgetByName(_uiHallTop,"img_msgbox"));
-//    img_msg_box->addTouchEventListener(CC_CALLBACK_2(HallLayer::onImageClicked,this));
-//    img_msg_box->setTag(IMAGE_MSG_BOX);
-    
-//    //----------------- DOWN LAYER ------------------
-//    // store button
-//    Button* b_store = (Button*)(Helper::seekWidgetByName(_uiHallDown,"store"));
-//    b_store->addTouchEventListener(CC_CALLBACK_2(HallLayer::onBtnClicked, this));
-//    b_store->setTag(BTN_STORE);
-//    
-//    // message button
-//    Button* b_message = (Button*)(Helper::seekWidgetByName(_uiHallDown,"message"));
-//    b_message->addTouchEventListener(CC_CALLBACK_2(HallLayer::onBtnClicked, this));
-//    b_message->setTag(BTN_MESSAGE);
-//    
-//    // --TODO ≈–∂œ «∑Ò”––¬” º˛ œ‘ æ” º˛Ã· æ
-//    
-//    // friend button
-//    //Button* b_friend = (Button*)(Helper::seekWidgetByName(_uiHallDown,"friend"));
-//    //b_friend->addTouchEventListener(CC_CALLBACK_2(HallLayer::onBtnClicked, this));
-//    //b_friend->setTag(BTN_FRIEND);
-//    
-//    // ranking button
-//    Button* b_ranking = (Button*)(Helper::seekWidgetByName(_uiHallDown,"ranking"));
-//    b_ranking->addTouchEventListener(CC_CALLBACK_2(HallLayer::onBtnClicked, this));
-//    b_ranking->setTag(BTN_RANKING);
-//    
-//    // help button
-//    Button* b_help = (Button*)(Helper::seekWidgetByName(_uiHallDown,"help"));
-//    b_help->addTouchEventListener(CC_CALLBACK_2(HallLayer::onBtnClicked, this));
-//    b_help->setTag(BTN_HELP);
-//    
-//    // share button
-//    Button* b_share = (Button*)(Helper::seekWidgetByName(_uiHallDown,"share"));
-//    b_share->addTouchEventListener(CC_CALLBACK_2(HallLayer::onBtnClicked, this));
-//    b_share->setTag(BTN_SHARE);
-    
-    LoadingLayer::createLoading(this, gFontConfig_22, GBKToUtf8("获取游戏列表......"), LOADING);
-    Director::getInstance()->getScheduler()->schedule(schedule_selector(HallLayer::requestGameTimerCallBack), this, 0.5, 0, 0.0f, false);
-    
-    
-    createGameList();
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    return true;
-    
-    
-    
     _nRoomType = 0;
     
     waitTime = 15.0f;
@@ -320,10 +137,6 @@ void HallLayer::onHandleRoomListMessage()
 
 void HallLayer::onHandleGameListMessage()
 {
-    LoadingLayer::removeLoading(this);
-    return;
-    
-    
     this->unschedule(schedule_selector(HallLayer::reRequest));
     roomLabel->setString("正在加载大厅信息...");
     
@@ -348,8 +161,8 @@ void HallLayer::requestGameTimerCallBack(float dt)
     
     if (PlatformLogic()->connected())
     {
-        //this->scheduleOnce(schedule_selector(HallLayer::reRequest), waitTime);
-        //roomLabel->setString("正在加载游戏信息...");
+        this->scheduleOnce(schedule_selector(HallLayer::reRequest), waitTime);
+        roomLabel->setString("正在加载游戏信息...");
         // 请求游戏列表信息
         PlatformLogic()->requestGameListInfo();
     }
@@ -376,22 +189,13 @@ void HallLayer::gameSelect(Ref * pSender,Widget::TouchEventType type)
         YZAudioEngine::getInstance()->playEffect(GAME_SOUND_CLICK);
         switch (image->getTag())
         {
-            case GAME_HZMJ:
+            case GAME_PDK:
             {
                 //LoadingLayer::createLoading(this, gFontConfig_22, GBKToUtf8("获取房间列表......"), LOADING);
                 Director::getInstance()->getScheduler()->schedule(schedule_selector(HallLayer::requestGameTimerCallBack), this, 0.5, 0, 0.0f, false);
                 ComNameInfo* nameInfo = GamesInfoModule()->findGameName(ErMahjong::GAME_NAME_ID);
                 GameCreator()->addGame(ErMahjong::GAME_NAME_ID, nameInfo->uKindID, YZGameCreator::NORMAL, GAME_CREATE_SELECTOR(ErMahjong::GameTableUI::create));
                 PlatformLogic()->requestRoomListInfo(nameInfo->uKindID, ErMahjong::GAME_NAME_ID);
-            }
-                break;
-            case GAME_BYDR:
-            {
-                //LoadingLayer::createLoading(this, gFontConfig_22, GBKToUtf8("获取房间列表......"), LOADING);
-                Director::getInstance()->getScheduler()->schedule(schedule_selector(HallLayer::requestGameTimerCallBack), this, 0.5, 0, 0.0f, false);
-                ComNameInfo* nameInfo = GamesInfoModule()->findGameName(FishKing::GAME_NAME_ID);
-                GameCreator()->addGame(FishKing::GAME_NAME_ID, nameInfo->uKindID, YZGameCreator::NORMAL, GAME_CREATE_SELECTOR(FishKing::GameTableUI::create));
-                PlatformLogic()->requestRoomListInfo(nameInfo->uKindID, FishKing::GAME_NAME_ID);
             }
                 break;
             default:
@@ -609,11 +413,6 @@ void HallLayer::walletChanged(LLONG money)
 // Add Game PageView
 void HallLayer::createGameList()
 {
-    createGame(GAME_HZMJ, GAME_BYDR, 0,0);
-    return;
-    
-    
-    
     Size winSize = Director::getInstance()->getWinSize();
     
     _pageViewGames = PageView::create();
@@ -654,25 +453,6 @@ void HallLayer::createGameList()
 //添加房间
 void HallLayer::createGame(int _gTag1,int _gTag2,int _gTag3,int _gTag4)
 {
-    
-    auto roomItem = createGameItem(_gTag1);
-    if (nullptr != roomItem)
-    {
-        roomItem->setPosition(Vec2(1136 * 0.30f, 640 * 0.38f));
-        _uiHallLayer->addChild(roomItem, 3);
-    }
-    
-    auto roomItem2 = createGameItem(_gTag2);
-    if (nullptr != roomItem2)
-    {
-        roomItem2->setPosition(Vec2(1136 * 0.70f, 640 * 0.38f));
-        _uiHallLayer->addChild(roomItem2, 3);
-    }
-    
-    
-    return;
-    
-    
     int maxTag = GAME_PDK+maxGameNum;
     if (_gTag1 >= maxTag) return;
     //创建房间列表子页面
@@ -733,12 +513,9 @@ ImageView* HallLayer::createGameItem(int _gTag)
 {
     ImageView* b_game = NULL;
     
-    if (_gTag == GAME_HZMJ)
+    if (_gTag == GAME_PDK)
     {
-        b_game = ImageView::create(IMG_GAME_HZMJ);
-    }else  if (_gTag == GAME_BYDR)
-    {
-        b_game = ImageView::create(IMG_GAME_BYDR);
+        b_game = ImageView::create(IMG_GAME_DDZ);
     }
     
     b_game->addTouchEventListener(CC_CALLBACK_2(HallLayer::gameSelect, this));

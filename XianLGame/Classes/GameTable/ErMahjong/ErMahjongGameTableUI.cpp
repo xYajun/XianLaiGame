@@ -57,6 +57,8 @@
 #define Tag_Disband             212
 #define Tag_NoAgree_Disband     213
 #define Tag_Agree_Disband       214
+#define Tag_Btn_Music           220
+#define Tag_Btn_Sound           221
 
 
 #define FileName_Chat_Face		"erMaJiang/chat/expressionanim"
@@ -1714,12 +1716,20 @@ namespace ErMahjong
         _settingWidget->setVisible(false);
         addChild(_settingWidget, 99);
         
-        auto btnDiaband  = dynamic_cast<Button*>(ui::Helper::seekWidgetByName(_settingWidget, "Button_8"));
+        auto btnDiaband  = dynamic_cast<Button*>(ui::Helper::seekWidgetByName(_settingWidget, "close_room"));
         btnDiaband->setTag(Tag_Disband);
         btnDiaband->addTouchEventListener(CC_CALLBACK_2(GameTableUI::btnClickEventCallback,this));
         
-        ui::Slider * bgSlider =dynamic_cast<ui::Slider*>(ui::Helper::seekWidgetByName(_settingWidget,"slider_music"));
-        ui::Slider * soundSlider =dynamic_cast<ui::Slider*>(ui::Helper::seekWidgetByName(_settingWidget,"slider_sound"));
+        _btnMusic  = dynamic_cast<Button*>(ui::Helper::seekWidgetByName(_settingWidget, "btn_music"));
+        _btnMusic->setTag(Tag_Btn_Music);
+        _btnMusic->addTouchEventListener(CC_CALLBACK_2(GameTableUI::btnClickEventCallback,this));
+        
+        _btnSound  = dynamic_cast<Button*>(ui::Helper::seekWidgetByName(_settingWidget, "btn_sound"));
+        _btnSound->setTag(Tag_Btn_Sound);
+        _btnSound->addTouchEventListener(CC_CALLBACK_2(GameTableUI::btnClickEventCallback,this));
+        
+        bgSlider =dynamic_cast<ui::Slider*>(ui::Helper::seekWidgetByName(_settingWidget,"slider_music"));
+        soundSlider =dynamic_cast<ui::Slider*>(ui::Helper::seekWidgetByName(_settingWidget,"slider_sound"));
         
         bgSlider->addEventListenerSlider(this, sliderpercentchangedselector(GameTableUI::bgSliderEvent));
         soundSlider->addEventListenerSlider(this, sliderpercentchangedselector(GameTableUI::soundSliderEvent));
@@ -2116,7 +2126,35 @@ namespace ErMahjong
             }
                 
 			break;
-		case ERMAJANG_TAG_BTNREADY:
+            case Tag_Btn_Music:
+            {
+                CCLOG("Volume : %d" , bgSlider->getPercent());
+                if(bgSlider->getPercent() > 0){
+                    _btnMusic->loadTextureNormal("erMaJiang/res2/btn_music_off.png");
+                    bgSlider->setPercent(0);
+                   YZAudioEngine::getInstance()->setBackgroundMusicVolume(0.0);
+                }else{
+                    bgSlider->setPercent(100);
+                    _btnMusic->loadTextureNormal("erMaJiang/res2/btn_music_on.png");
+                   YZAudioEngine::getInstance()->setBackgroundMusicVolume(1.0);
+                }
+            }
+                break;
+            case Tag_Btn_Sound:
+            {
+                CCLOG("Volume : %d" , soundSlider->getPercent());
+                if(soundSlider->getPercent() > 0){
+                    soundSlider->setPercent(0);
+                    _btnSound->loadTextureNormal("erMaJiang/res2/btn_effect_off.png");
+                    YZAudioEngine::getInstance()->setEffectsVolume(0.0);
+                }else{
+                    soundSlider->setPercent(100);
+                    _btnSound->loadTextureNormal("erMaJiang/res2/btn_effect_on.png");
+                    YZAudioEngine::getInstance()->setEffectsVolume(1.0);
+                }
+            }
+                break;
+            case ERMAJANG_TAG_BTNREADY:
 			{
                 if (_isLastGame) {
                     //_tableLogic->sendUserUp();
@@ -2881,6 +2919,11 @@ namespace ErMahjong
             Slider* slider = dynamic_cast<Slider*>(pSender);
             CCLOG("Volume : %d" , slider->getPercent());
             YZAudioEngine::getInstance()->setBackgroundMusicVolume(slider->getPercent() / 100.0);
+            if(slider->getPercent() > 0){
+                _btnMusic->loadTextureNormal("erMaJiang/res2/btn_music_on.png");
+            }else{
+                _btnMusic->loadTextureNormal("erMaJiang/res2/btn_music_off.png");
+            }
         }
     }
  
@@ -2890,6 +2933,11 @@ namespace ErMahjong
             Slider* slider = dynamic_cast<Slider*>(pSender);
             CCLOG("Volume : %d" , slider->getPercent());
             YZAudioEngine::getInstance()->setEffectsVolume(slider->getPercent() / 100.0);
+            if(slider->getPercent() > 0){
+                _btnSound->loadTextureNormal("erMaJiang/res2/btn_effect_on.png");
+            }else{
+                _btnSound->loadTextureNormal("erMaJiang/res2/btn_effect_off.png");
+            }
         }
     }
     

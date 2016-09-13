@@ -66,15 +66,16 @@ bool RecordLayer::init()
     auto img_top = (ImageView*)Helper::seekWidgetByName(_recordLayout, "Image_top");
     img_top->setAnchorPoint(Vec2(0.5f, 0.5f));
     img_top->setPosition(Vec2(winSize.width/2 , winSize.height - img_top->getContentSize().height/2));
+    img_top->setVisible(false);
     
     auto btn_share = (Button*)Helper::seekWidgetByName(_recordLayout, "btn_share");
     btn_share->setTag(RRCORDLAYER_BTNSHARE_TAG);
-    btn_share->setPosition(Vec2(btn_share->getPositionX(), img_top->getPositionY() + 5));
+    btn_share->setPosition(Vec2(btn_share->getPositionX(), img_top->getPositionY()));
     btn_share->addTouchEventListener(CC_CALLBACK_2(RecordLayer::menuEventCallBack, this));
     
     auto btn_exit = (Button*)Helper::seekWidgetByName(_recordLayout, "btn_exit");
     btn_exit->setTag(RRCORDLAYER_BTNEXIT_TAG);
-    btn_exit->setPosition(Vec2(btn_exit->getPositionX(), img_top->getPositionY() + 5));
+    btn_exit->setPosition(Vec2(btn_exit->getPositionX(), img_top->getPositionY()));
     btn_exit->addTouchEventListener(CC_CALLBACK_2(RecordLayer::menuEventCallBack, this));
     
     MSG_GM_C_QUERY_GAMERECORD_PDK record_list;

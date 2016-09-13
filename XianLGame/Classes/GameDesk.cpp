@@ -49,7 +49,7 @@ static const char* QUICK_START	    = "platform/btn_quick.png";               //q
 static const char* DESK_ITEM_PATH	= "platform/DestItemUi.json";
 static const char* FIVE_DESK_ITEM_PATH	= "platform/DestItemUi2.json";
 
-static const char * OPEN_ROOM_HALL_BG = "HallLayer/HallLayer_1.json";
+static const char * OPEN_ROOM_HALL_BG = "HallLayer/HallLayer.json";
 static const char * OPEN_ROOM_HALL_TOP = "HallLayer/Hall_Top.json";
 
 static const char * CREATE_ROOM_LAYER = "platform/openRoom/RoomLayer/RoomLayer_1/RoomLayer_1.json";     //鍒涘缓鎴块棿
@@ -60,6 +60,10 @@ static const char * ENTER_GAME_LAYER = "platform/openRoom/RoomLayer/RoomLayer_5/
 static const char * OPEN_CREATE_ROOM_IAMGE = "HallLayer/res/btn_craeteRoom.png";
 static const char * RECOVERY_CREATE_ROOM_IMAGE = "HallLayer/res/btn_recoveryRoom.png";
 
+#define Tag_Btn_Music           220
+#define Tag_Btn_Sound           221
+#define TAG_SET_CLOSE           222
+#define TAG_SHARE_SET_CLOSE     223
 
 #define TAG_BTN_ADD_MONEY      200
 #define TAG_BTN_EXIT_CREATE_ROOM       201
@@ -72,6 +76,9 @@ static const char * RECOVERY_CREATE_ROOM_IMAGE = "HallLayer/res/btn_recoveryRoom
 #define TAG_BTN_WANFA 208       //玩法
 #define TAG_BTN_RECORD     209
 #define TAG_BTN_SHOP 263       //商店
+#define TAG_BTN_MAIN_SET 290
+#define TAG_BTN_MAIN_SHARE 291
+#define TAG_BTN_MAIN_EXIT 292
 
 #define TAG_BTN_ADD_BUY_CARD 210        //添加购买房卡数量
 #define TAG_BTN_SUB_BUY_CARD 211        //减少购买房卡数量
@@ -99,7 +106,8 @@ static const char * RECOVERY_CREATE_ROOM_IMAGE = "HallLayer/res/btn_recoveryRoom
 #define TAG_BTN_INPUT_NUM_9     309
 #define TAG_BTN_INPUT_NUM_10    310        //清除
 #define TAG_BTN_INPUT_NUM_11    311        //删除
-
+#define ERMAJANG_TAG_LAYOUTRESULT   5000
+#define SHARELAYER_TAG  5001
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -224,50 +232,63 @@ void GameDesk::initOpenRoomDesk(){
     auto hallBG =(ImageView*)(Helper::seekWidgetByName(_uiRoomLayer,"hall_bg"));
     hallBG->setScale(Win_w/hallBG->getContentSize().width,Win_h/hallBG->getContentSize().height);
     
-//    auto _uiRoomLayerTop = cocostudio::GUIReader::getInstance()->widgetFromJsonFile(OPEN_ROOM_HALL_TOP);
-//    _uiRoomLayerTop->setAnchorPoint(Vec2(0.5f, 0.5f));
-//    _uiRoomLayerTop->setPosition(Vec2(Win_w / 2, Win_h - _uiRoomLayerTop->getContentSize().height/2));
-//    addChild(_uiRoomLayerTop, 2);
-//    
-//    auto btnRecord = (Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_record"));
-//    btnRecord->setTag(TAG_BTN_RECORD);
-//    btnRecord->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
+    auto _uiRoomLayerTop = cocostudio::GUIReader::getInstance()->widgetFromJsonFile(OPEN_ROOM_HALL_TOP);
+    _uiRoomLayerTop->setAnchorPoint(Vec2(0.5f, 0.5f));
+    _uiRoomLayerTop->setPosition(Vec2(Win_w / 2, Win_h - _uiRoomLayerTop->getContentSize().height/2));
+    addChild(_uiRoomLayerTop, 2);
+    
+    auto btnRecord = (Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_record"));
+    btnRecord->setTag(TAG_BTN_RECORD);
+    btnRecord->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
+    
+    auto btnMainSet = (Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_set"));
+    btnMainSet->setTag(TAG_BTN_MAIN_SET);
+    btnMainSet->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
+    
+    auto btnMainShare = (Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_msg"));
+    btnMainShare->setTag(TAG_BTN_MAIN_SHARE);
+    btnMainShare->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
+    
+    auto btnMainExit = (Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_back"));
+    btnMainExit->setTag(TAG_BTN_MAIN_EXIT);
+    btnMainExit->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
+    
     
     // 创建房间按钮
-    createRoomBtn = (Button*)(Helper::seekWidgetByName(_uiRoomLayer,"btn_create"));
+    createRoomBtn = (Button*)(Helper::seekWidgetByName(_uiRoomLayer,"btn_createRoom"));
     createRoomBtn->setTag(TAG_BTN_OPEN_CREATEROOM);
     createRoomBtn->setVisible(false);
     createRoomBtn->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
     
-    auto enterGameBtn = (Button*)(Helper::seekWidgetByName(_uiRoomLayer,"btn_join"));
+    auto enterGameBtn = (Button*)(Helper::seekWidgetByName(_uiRoomLayer,"btn_enterRoom"));
     enterGameBtn->setTag(TAG_BTN_ENTER_ROOM);
     enterGameBtn->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
     
-//    std::string headUrl = RoomLogic()->loginResult.pUserInfoStruct.szHeadUrl;
-//    
-//    JzDebug("加入房间 自己的头像链接为 : %s " , headUrl.c_str());
-//    
-//    _headImg = (ImageView*)(Helper::seekWidgetByName(_uiRoomLayerTop,"head_img"));
-//    _headImg->setVisible(false);
-//    //auto httpSp = HttpSprite::create(headUrl, "pdk/game/head_defult.png");
-//    auto httpSp = HttpSprite::create(headUrl, RoomLogic()->loginResult.pUserInfoStruct.bBoy ? "erMaJiang/DisplayPicture/man.png" : "erMaJiang/DisplayPicture/woman.png");
-//    httpSp->setImgSize(_headImg->getContentSize()/1.5f);
-//    httpSp->setPosition(_headImg->getPosition());
-//    httpSp->onClickSpriteCallBack(CC_CALLBACK_0(GameDesk::clickHeadImage, this));
-//    _uiRoomLayerTop->addChild(httpSp,10);
+    std::string headUrl = RoomLogic()->loginResult.pUserInfoStruct.szHeadUrl;
+    
+    JzDebug("加入房间 自己的头像链接为 : %s " , headUrl.c_str());
+    
+    _headImg = (ImageView*)(Helper::seekWidgetByName(_uiRoomLayerTop,"head_img"));
+    _headImg->setVisible(false);
+    //auto httpSp = HttpSprite::create(headUrl, "pdk/game/head_defult.png");
+    auto httpSp = HttpSprite::create(headUrl, RoomLogic()->loginResult.pUserInfoStruct.bBoy ? "erMaJiang/DisplayPicture/man.png" : "erMaJiang/DisplayPicture/woman.png");
+    httpSp->setImgSize(Size(69,69));
+    httpSp->setPosition(_headImg->getPosition());
+    httpSp->onClickSpriteCallBack(CC_CALLBACK_0(GameDesk::clickHeadImage, this));
+    _uiRoomLayerTop->addChild(httpSp,10);
   
     
-//    char str[60]={0};
-//    auto label_nick = (Text*)(Helper::seekWidgetByName(_uiRoomLayerTop,"label_nick"));
-//    label_nick->setString(GBKToUtf8(PlatformLogic()->loginResult.nickName));
-//    
-//    JzDebug("nickname : %s " ,GBKToUtf8(PlatformLogic()->loginResult.nickName));
-//    JzDebug("dwUserID : %d " ,PlatformLogic()->loginResult.dwUserID);
-//
-//    SaveIntegerToXML(SAVE_USERID, PlatformLogic()->loginResult.dwUserID);
-//
-//    label_roomCount = (Text*)(Helper::seekWidgetByName(_uiRoomLayerTop,"label_gold"));
-//    
+    char str[60]={0};
+    auto label_nick = (Text*)(Helper::seekWidgetByName(_uiRoomLayerTop,"label_nick"));
+    label_nick->setString(GBKToUtf8(PlatformLogic()->loginResult.nickName));
+    
+    JzDebug("nickname : %s " ,GBKToUtf8(PlatformLogic()->loginResult.nickName));
+    JzDebug("dwUserID : %d " ,PlatformLogic()->loginResult.dwUserID);
+
+    SaveIntegerToXML(SAVE_USERID, PlatformLogic()->loginResult.dwUserID);
+
+    label_roomCount = (Text*)(Helper::seekWidgetByName(_uiRoomLayerTop,"label_gold"));
+    
     //创建房间
     _uiCreateRoomLayer = cocostudio::GUIReader::getInstance()->widgetFromJsonFile(CREATE_ROOM_LAYER);
     _uiCreateRoomLayer->setAnchorPoint(Vec2(0.5f, 0.5f));
@@ -275,44 +296,44 @@ void GameDesk::initOpenRoomDesk(){
     _uiCreateRoomLayer->setVisible(false);
     addChild(_uiCreateRoomLayer , 4);
     
-    auto doCreateRoomBtn = (Button*)(Helper::seekWidgetByName(_uiCreateRoomLayer,"btn_ok"));
+    auto doCreateRoomBtn = (Button*)(Helper::seekWidgetByName(_uiCreateRoomLayer,"btn_create"));
     doCreateRoomBtn->setTag(TAG_BTN_CREATE_ROOM);
     doCreateRoomBtn->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
     
-    auto exitCreateRoomBtn = (Button*)(Helper::seekWidgetByName(_uiCreateRoomLayer,"Button_20"));
+    auto exitCreateRoomBtn = (Button*)(Helper::seekWidgetByName(_uiCreateRoomLayer,"btn_exit"));
     exitCreateRoomBtn->setTag(TAG_BTN_EXIT_CREATE_ROOM);
     exitCreateRoomBtn->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
     
     
-//    char strRoomCountName[64] = {0};
-//    for (int i = 0; i < 2; i ++) {
-//        sprintf(strRoomCountName,"inning_cb%d",i + 1);
-//        auto checkBox = (ui::CheckBox*)(Helper::seekWidgetByName(_uiCreateRoomLayer,strRoomCountName));
-//        checkBox->setTag(TAG_CR_CB_1 + i);
-//        if (i == 0) {
-//            checkBox->setSelected(true);
-//        }else{
-//            checkBox->setSelected(false);
-//        }
-//        checkBox->addEventListenerCheckBox(this, checkboxselectedeventselector(GameDesk::selectedRoomCountStateEvent));
-//        roomCountCBoxVec.push_back(checkBox);
-//    }
-//    
-//    
-//    char strRoomZMName[64] = {0};
-//    for (int i = 0; i < 3; i ++) {
-//        sprintf(strRoomZMName,"zm_cb%d",i + 1);
-//        auto checkBox = (ui::CheckBox*)(Helper::seekWidgetByName(_uiCreateRoomLayer,strRoomZMName));
-//        checkBox->setTag(TAG_ZM_CB_1 + i);
-//        if (i == 0) {
-//            checkBox->setSelected(true);
-//        }else{
-//            checkBox->setSelected(false);
-//        }
-//        checkBox->addEventListenerCheckBox(this, checkboxselectedeventselector(GameDesk::selectedRoomZMStateEvent));
-//        
-//        roomZMCBoxVec.push_back(checkBox);
-//    }
+    char strRoomCountName[64] = {0};
+    for (int i = 0; i < 2; i ++) {
+        sprintf(strRoomCountName,"inning_cb%d",i + 1);
+        auto checkBox = (ui::CheckBox*)(Helper::seekWidgetByName(_uiCreateRoomLayer,strRoomCountName));
+        checkBox->setTag(TAG_CR_CB_1 + i);
+        if (i == 0) {
+            checkBox->setSelected(true);
+        }else{
+            checkBox->setSelected(false);
+        }
+        checkBox->addEventListenerCheckBox(this, checkboxselectedeventselector(GameDesk::selectedRoomCountStateEvent));
+        roomCountCBoxVec.push_back(checkBox);
+    }
+    
+    
+    char strRoomZMName[64] = {0};
+    for (int i = 0; i < 3; i ++) {
+        sprintf(strRoomZMName,"zm_cb%d",i + 1);
+        auto checkBox = (ui::CheckBox*)(Helper::seekWidgetByName(_uiCreateRoomLayer,strRoomZMName));
+        checkBox->setTag(TAG_ZM_CB_1 + i);
+        if (i == 0) {
+            checkBox->setSelected(true);
+        }else{
+            checkBox->setSelected(false);
+        }
+        checkBox->addEventListenerCheckBox(this, checkboxselectedeventselector(GameDesk::selectedRoomZMStateEvent));
+        
+        roomZMCBoxVec.push_back(checkBox);
+    }
     
     
     
@@ -366,10 +387,10 @@ void GameDesk::initOpenRoomDesk(){
 //    auto btnSet=(ui::Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_wanFa"));
 //    btnSet->setTag(TAG_BTN_WANFA);
 //    btnSet->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
-//    
-//    auto btnShop=(ui::Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_addGold"));
-//    btnShop->setTag(TAG_BTN_SHOP);
-//    btnShop->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
+    
+    auto btnShop=(ui::Button*)(Helper::seekWidgetByName(_uiRoomLayerTop,"btn_addGold"));
+    btnShop->setTag(TAG_BTN_SHOP);
+    btnShop->addTouchEventListener(CC_CALLBACK_2(GameDesk::onBtnClickCallBack, this));
     
     char inputName[64] = {0};
     for(int i = 0; i <= 11; i++)
@@ -528,6 +549,59 @@ void GameDesk::onBtnClickCallBack(cocos2d::Ref* pSender, Widget::TouchEventType 
             this->queryGameRecordFromServer();
         }
             break;
+        case TAG_BTN_MAIN_SHARE:
+        {
+            Size winSize = Director::getInstance()->getWinSize();
+            auto shareLayer = cocostudio::GUIReader::getInstance()->widgetFromJsonFile("ShareLayer/ShareLayer.json");
+            shareLayer->setAnchorPoint(Vec2(0.5f, 0.5f));
+            shareLayer->setTag(SHARELAYER_TAG);
+            shareLayer->setPosition(Vec2(winSize.width / 2, winSize.height / 2));
+            //shareLayer->setVisible(false);
+            addChild(shareLayer, 99);
+            
+            auto btnExit  = dynamic_cast<Button*>(ui::Helper::seekWidgetByName(shareLayer, "btn_close"));
+            btnExit->setTag(TAG_SHARE_SET_CLOSE);
+            btnExit->addTouchEventListener(CC_CALLBACK_2(GameDesk::btnClickEventCallback,this));
+        }
+            break;
+        case TAG_BTN_MAIN_EXIT:
+        {
+            auto exitGame = ExitLayer::create();
+            exitGame->showPrompt();
+        }
+            break;
+        case TAG_BTN_MAIN_SET:
+        {
+            Size winSize = Director::getInstance()->getWinSize();
+            _settingWidget = cocostudio::GUIReader::getInstance()->widgetFromJsonFile("erMaJiang/GameSet.json");
+            _settingWidget->setAnchorPoint(Vec2(0.5f, 0.5f));
+            _settingWidget->setTag(ERMAJANG_TAG_LAYOUTRESULT);
+            _settingWidget->setPosition(Vec2(winSize.width / 2, winSize.height / 2));
+            //_settingWidget->setVisible(false);
+            addChild(_settingWidget, 99);
+    
+            auto btnDiaband  = dynamic_cast<Button*>(ui::Helper::seekWidgetByName(_settingWidget, "close_room"));
+            btnDiaband->setVisible(false);
+            
+             auto btnExit  = dynamic_cast<Button*>(ui::Helper::seekWidgetByName(_settingWidget, "btn_close"));
+            btnExit->setTag(TAG_SET_CLOSE);
+            btnExit->addTouchEventListener(CC_CALLBACK_2(GameDesk::btnClickEventCallback,this));
+            
+            _btnMusic  = dynamic_cast<Button*>(ui::Helper::seekWidgetByName(_settingWidget, "btn_music"));
+            _btnMusic->setTag(Tag_Btn_Music);
+            _btnMusic->addTouchEventListener(CC_CALLBACK_2(GameDesk::btnClickEventCallback,this));
+            
+            _btnSound  = dynamic_cast<Button*>(ui::Helper::seekWidgetByName(_settingWidget, "btn_sound"));
+            _btnSound->setTag(Tag_Btn_Sound);
+            _btnSound->addTouchEventListener(CC_CALLBACK_2(GameDesk::btnClickEventCallback,this));
+            
+            bgSlider =dynamic_cast<ui::Slider*>(ui::Helper::seekWidgetByName(_settingWidget,"slider_music"));
+            soundSlider =dynamic_cast<ui::Slider*>(ui::Helper::seekWidgetByName(_settingWidget,"slider_sound"));
+            
+            bgSlider->addEventListenerSlider(this, sliderpercentchangedselector(GameDesk::bgSliderEvent));
+            soundSlider->addEventListenerSlider(this, sliderpercentchangedselector(GameDesk::soundSliderEvent));
+        }
+            break;
         case TAG_BTN_SHOP:
         {
             int propId = 0;
@@ -543,6 +617,33 @@ void GameDesk::onBtnClickCallBack(cocos2d::Ref* pSender, Widget::TouchEventType 
     }
 }
 
+void GameDesk::bgSliderEvent(cocos2d::Ref *pSender, SliderEventType type)
+{
+    if (type == SLIDER_PERCENTCHANGED) {
+        Slider* slider = dynamic_cast<Slider*>(pSender);
+        CCLOG("Volume : %d" , slider->getPercent());
+        YZAudioEngine::getInstance()->setBackgroundMusicVolume(slider->getPercent() / 100.0);
+        if(slider->getPercent() > 0){
+            _btnMusic->loadTextureNormal("erMaJiang/res2/btn_music_on.png");
+        }else{
+            _btnMusic->loadTextureNormal("erMaJiang/res2/btn_music_off.png");
+        }
+    }
+}
+
+void GameDesk::soundSliderEvent(cocos2d::Ref *pSender, SliderEventType type)
+{
+    if (type == SLIDER_PERCENTCHANGED) {
+        Slider* slider = dynamic_cast<Slider*>(pSender);
+        CCLOG("Volume : %d" , slider->getPercent());
+        YZAudioEngine::getInstance()->setEffectsVolume(slider->getPercent() / 100.0);
+        if(slider->getPercent() > 0){
+            _btnSound->loadTextureNormal("erMaJiang/res2/btn_effect_on.png");
+        }else{
+            _btnSound->loadTextureNormal("erMaJiang/res2/btn_effect_off.png");
+        }
+    }
+}
 
 void GameDesk::btnBuyRoomCardCallBack(cocos2d::Ref* pSender, Widget::TouchEventType touchtype){
     if (Widget::TouchEventType::ENDED != touchtype)	return;
@@ -699,7 +800,6 @@ void GameDesk::updateRoomPeople(INT count)
 
 
 void GameDesk::onQueryPropRoomCardInfo(MSG_PROP_S_QUERY_ROOMCARD * data , BYTE bHandleCode) {
-   // return;
     if (bHandleCode == 0) {
         userPorpInfos.at(data->attribValue).count = data->nHoldCount;
     }else if (bHandleCode == 1){
@@ -707,12 +807,12 @@ void GameDesk::onQueryPropRoomCardInfo(MSG_PROP_S_QUERY_ROOMCARD * data , BYTE b
         queryBackRoomInfoFromService();
         
         map<int,PropInfo>::iterator it;
-//        for(it=userPorpInfos.begin();it!=userPorpInfos.end();++it){
-//            JzDebug("查询道具信息    道具ID ： %d   道具名 : %s  ,  数量 ：%d " , it->first , it->second.szPropName.c_str() , it->second.count);
-//            char str[128];
-//            sprintf(str, GBKToUtf8("房卡 : %d"), it->second.count);
-//            label_roomCount->setString(str);
-//        }
+        for(it=userPorpInfos.begin();it!=userPorpInfos.end();++it){
+            JzDebug("查询道具信息    道具ID ： %d   道具名 : %s  ,  数量 ：%d " , it->first , it->second.szPropName.c_str() , it->second.count);
+            char str[128];
+            sprintf(str, GBKToUtf8("房卡 : %d"), it->second.count);
+            label_roomCount->setString(str);
+        }
     }
 }
 
@@ -913,7 +1013,7 @@ void GameDesk::onQueryBakcRoomMessage(MSG_QueryBACKROOM_RSP_INFO * data , BYTE c
         
         CHAR buf[512];
         if (code == 1) {
-            sprintf(buf, ("加入房间失败,房间不存在,请确认房间号..."));
+            sprintf(buf, ("加入房间失败,此房间号不存在..."));
         }else if (code == 2){
             sprintf(buf, ("加入房间失败,房间已满..."));
         }else{
@@ -953,9 +1053,9 @@ void GameDesk::onBuyRoomCardMessage(MSG_PROP_S_BUY_ROOMCARD * data){
     
     userPorpInfos.at(data->attribValue).count = data->nHoldCount;
     
-    //char str[128];
-    //sprintf(str, GBKToUtf8("房卡 : %d"), data->nHoldCount);
-    //label_roomCount->setString(str);
+    char str[128];
+    sprintf(str, GBKToUtf8("房卡 : %d"), data->nHoldCount);
+    label_roomCount->setString(str);
     JzDebug("购买后 %d 道具数量为 : %d  花费金钱 : %lld " , data->attribValue ,userPorpInfos.at(data->attribValue).count ,data->dwCost );
 }
 
@@ -1491,6 +1591,77 @@ void GameDesk::setEventCallBack(Ref* pSender, Widget::TouchEventType type)
     }
     
 }
+
+void GameDesk::btnClickEventCallback(cocos2d::Ref* pSender, ui::Widget::TouchEventType touchtype)
+{
+    if (Widget::TouchEventType::ENDED != touchtype)	return;
+    Button* btn = dynamic_cast<Button*>(pSender);
+    
+    YZAudioEngine::getInstance()->playEffect("erMaJiang/music/btnpress.mp3");
+    
+    switch (btn->getTag())
+    {
+        case TAG_SET_CLOSE:
+        {
+           removeChildByTag(ERMAJANG_TAG_LAYOUTRESULT);
+        }
+            break;
+        case TAG_SHARE_SET_CLOSE:
+        {
+            removeChildByTag(SHARELAYER_TAG);
+        }
+            break;
+//        case Tag_Disband:
+//        {
+//            if (_tableLogic->checkUserIsDeskOwner()) {
+//                _tableLogic->sendDisbandRoomResp(true);
+//            }else{
+//                if (m_iNowGameCount == 0) {
+//                    _tableLogic->sendUserUp();
+//                    _tableLogic->sendForceQuit();
+//                }else{
+//                    _tableLogic->sendDisbandRoomResp(true);
+//                }
+//            }
+//        }
+//            
+//            break;
+        case Tag_Btn_Music:
+        {
+            CCLOG("Volume : %d" , bgSlider->getPercent());
+            if(bgSlider->getPercent() > 0){
+                _btnMusic->loadTextureNormal("erMaJiang/res2/btn_music_off.png");
+                bgSlider->setPercent(0);
+                YZAudioEngine::getInstance()->setBackgroundMusicVolume(0.0);
+            }else{
+                bgSlider->setPercent(100);
+                _btnMusic->loadTextureNormal("erMaJiang/res2/btn_music_on.png");
+                YZAudioEngine::getInstance()->setBackgroundMusicVolume(1.0);
+            }
+        }
+            break;
+        case Tag_Btn_Sound:
+        {
+            CCLOG("Volume : %d" , soundSlider->getPercent());
+            if(soundSlider->getPercent() > 0){
+                soundSlider->setPercent(0);
+                _btnSound->loadTextureNormal("erMaJiang/res2/btn_effect_off.png");
+                YZAudioEngine::getInstance()->setEffectsVolume(0.0);
+            }else{
+                soundSlider->setPercent(100);
+                _btnSound->loadTextureNormal("erMaJiang/res2/btn_effect_on.png");
+                YZAudioEngine::getInstance()->setEffectsVolume(1.0);
+            }
+        }
+            break;
+     
+        default:
+            break;
+    }
+}
+
+
+
 
 void GameDesk::exitEventCallBack(Ref* pSender, Widget::TouchEventType type)
 {

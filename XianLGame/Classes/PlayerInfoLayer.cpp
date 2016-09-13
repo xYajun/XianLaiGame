@@ -61,21 +61,19 @@ bool PlayerInfoLayer::init()
     
     auto _headImg = (ImageView*)(Helper::seekWidgetByName(uiPlayerInfoLayer,"headImg"));
     _headImg->setVisible(false);
-    auto httpSp = HttpSprite::create(uInfo.headUrl, "roleInfo/roleInfo/headImg.png");
+    auto httpSp = HttpSprite::create(uInfo.headUrl, "roleInfo/res2/thumb.png");
     httpSp->setPosition(_headImg->getPosition());
     uiPlayerInfoLayer->addChild(httpSp);
     
     ui::Text* label_name = (ui::Text*)(Helper::seekWidgetByName(uiPlayerInfoLayer,"label_name"));
     label_name->setString(GBKToUtf8(uInfo.nickName.c_str()));
     
-    ui::Text* label_sex = (ui::Text*)(Helper::seekWidgetByName(uiPlayerInfoLayer,"label_sex"));
-    std::string sex = "女";
-    
+    auto label_sex = (ImageView*)(Helper::seekWidgetByName(uiPlayerInfoLayer,"label_sex"));
     if (uInfo.bBoy) {
-        sex = "男";
+        label_sex->loadTexture("roleInfo/res2/nan.png");
+    }else{
+        label_sex->loadTexture("roleInfo/res2/nv.png");
     }
-    
-    label_sex->setString(sex);
     
     ui::Text* label_id = (ui::Text*)(Helper::seekWidgetByName(uiPlayerInfoLayer,"label_id"));
     
@@ -92,13 +90,13 @@ bool PlayerInfoLayer::init()
     btn_close->addTouchEventListener(CC_CALLBACK_2(PlayerInfoLayer::onBtnClicked,this));
     btn_close->setTag(BTN_INFOCLOSE);
     
-    Button* btn_loginOut = (Button*)(Helper::seekWidgetByName(uiPlayerInfoLayer,"btn_outLogin"));
-    btn_loginOut->addTouchEventListener(CC_CALLBACK_2(PlayerInfoLayer::onBtnClicked,this));
-    btn_loginOut->setTag(BTN_LOGINOUT);
-    btn_loginOut->setVisible(false);
-    if (uInfo.isHall) {
-        btn_loginOut->setVisible(true);
-    }
+//    Button* btn_loginOut = (Button*)(Helper::seekWidgetByName(uiPlayerInfoLayer,"btn_outLogin"));
+//    btn_loginOut->addTouchEventListener(CC_CALLBACK_2(PlayerInfoLayer::onBtnClicked,this));
+//    btn_loginOut->setTag(BTN_LOGINOUT);
+//    btn_loginOut->setVisible(false);
+//    if (uInfo.isHall) {
+//        btn_loginOut->setVisible(true);
+//    }
 
 	return true;
 }

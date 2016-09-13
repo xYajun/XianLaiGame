@@ -6,22 +6,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/YZPlatform/YZPlatformLogic.cpp"
-            timestampString = "495191411.02618"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "447"
-            endingLineNumber = "447"
-            landmarkName = "YZPlatformLogic::onRoomListMessage(NetMessageHead* messageHead, void* object, INT objectSize)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -40,7 +24,7 @@
                   moduleName = "XianLGame-mobile"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/xialiguo/GitHub/XianLaiGame/XianLGame/Classes/GameTable/ErMahjong/ErMahjongDefine.h"
-                  timestampString = "495198096.341526"
+                  timestampString = "495440874.908035"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -55,7 +39,7 @@
                   moduleName = "XianLGame-mobile"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/xialiguo/GitHub/XianLaiGame/XianLGame/Classes/GameTable/ErMahjong/ErMahjongDefine.h"
-                  timestampString = "495198096.341793"
+                  timestampString = "495440874.90837"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -70,7 +54,7 @@
                   moduleName = "XianLGame-mobile"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/xialiguo/GitHub/XianLaiGame/XianLGame/Classes/GameTable/ErMahjong/ErMahjongDefine.h"
-                  timestampString = "495198096.342043"
+                  timestampString = "495440874.908622"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -85,7 +69,7 @@
                   moduleName = "XianLGame-mobile"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/xialiguo/GitHub/XianLaiGame/XianLGame/Classes/GameTable/ErMahjong/ErMahjongDefine.h"
-                  timestampString = "495198096.342318"
+                  timestampString = "495440874.908982"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -100,7 +84,7 @@
                   moduleName = "XianLGame-mobile"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/xialiguo/GitHub/XianLaiGame/XianLGame/Classes/GameTable/ErMahjong/ErMahjongDefine.h"
-                  timestampString = "495198096.342558"
+                  timestampString = "495440874.909992"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -115,7 +99,7 @@
                   moduleName = "XianLGame-mobile"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/xialiguo/GitHub/XianLaiGame/XianLGame/Classes/GameTable/ErMahjong/ErMahjongDefine.h"
-                  timestampString = "495198096.342825"
+                  timestampString = "495440874.91037"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -130,7 +114,7 @@
                   moduleName = "XianLGame-mobile"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/xialiguo/GitHub/XianLaiGame/XianLGame/Classes/GameTable/ErMahjong/ErMahjongDefine.h"
-                  timestampString = "495198096.343073"
+                  timestampString = "495440874.910679"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -146,13 +130,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/YZData/YZGamesInfoModule.cpp"
-            timestampString = "495193593.24458"
+            filePath = "../Classes/GameRoom.cpp"
+            timestampString = "495354223.590884"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "YZGamesInfoModule::findGameName(INT gameID)"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "GameRoom::createRoom(ComRoomInfo* roomInfo1, ComRoomInfo* roomInfo2, ComRoomInfo* roomInfo3)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

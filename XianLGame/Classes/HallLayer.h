@@ -23,15 +23,7 @@ USING_NS_CC;
 #define  BTN_HELP 1003
 #define  BTN_SHARE 1004
 #define  BTN_EXIT 1005
-#define  BTN_GLODADD 1006
-
-
-#define  BTN_FREE 1007
-#define  BTN_TREASURE 1008
-#define  BTN_SET 1009
-#define  BTN_TRUMPET 1010
-
-#define  BTN_SHARE 1011
+#define  BTN_SET 1006
 
 #define  BTN_SHARE_EXIT 1012
 
@@ -48,8 +40,6 @@ USING_NS_CC;
 #define GAME_PDK 2001
 #define GAME_CSMJ 2002
 
-#define GAME_HZMJ 5001
-#define GAME_BYDR 5002
 
 struct MSG_GP_S_USER_SHARE
 {
@@ -68,7 +58,6 @@ class HallLayer : public YZPlatformEventLayer, MoneyChangeNotify
 {
 public:
     Widget* _uiHallLayer;
-    Widget* _uiHallTop;
     Widget* _uiMessageBox;
     Widget* _uiShareLayer;
     Button* personal;

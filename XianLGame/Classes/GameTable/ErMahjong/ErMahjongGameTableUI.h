@@ -224,6 +224,10 @@ namespace ErMahjong
         bool _isLastGame;
         int m_iNowGameCount;
         
+        Button* _btnMusic;
+        Button* _btnSound;
+        ui::Slider * bgSlider;
+        ui::Slider * soundSlider;
     private:
         //结算
         void initResultLayer();
